@@ -32,12 +32,16 @@ public class Puzzle3 {
                 first[i] = X[i];
                 second[i] = X[i+length/2];
             }
-            char x = '2';
-            char y = '3';
 
-            char doubled = 0;
+            char doubled = ' ';
             for (int i = 0; i < length/2; i++) {
-
+                char p = first[i];
+                for (int j = 0; j < length / 2; j++) {
+                    char q = second[j];
+                    if(Objects.equals(p, q)){
+                        doubled = q;
+                    }
+                }
             }
 
             result += map.get(doubled);
