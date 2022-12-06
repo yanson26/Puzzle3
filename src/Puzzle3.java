@@ -1,6 +1,5 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.nio.CharBuffer;
 import java.util.*;
 
 public class Puzzle3 {
@@ -9,20 +8,21 @@ public class Puzzle3 {
         Scanner sc = new Scanner(new File("Puzzle3.txt"));
         int result = 0;
 
-        Map<Character, Integer> map = new HashMap<>();
+        Map<Character, Integer> priorities = new HashMap<>();
         int z = 27;
         for (int i = 65; i < 91 ; i++) {
             char q =(char)i;
-            map.put(q,z);
+            priorities.put(q,z);
             z++;
         }
         z = 1;
         for (int i = 97; i < 123 ; i++) {
             char q =(char)i;
-            map.put(q,z);
+            priorities.put(q,z);
             z++;
         }
-        while(sc.hasNext()){
+        //first Part
+        /*while(sc.hasNext()){
             String s = sc.nextLine();
             int length = s.length();
             char[] X = s.toCharArray();
@@ -44,9 +44,30 @@ public class Puzzle3 {
                 }
             }
 
-            result += map.get(doubled);
+            result += priorities.get(doubled);*/
 
+        //Second Part
+        for (int i = 0; i < 100; i++) {
+            String s1 = sc.nextLine();
+            String s2 = sc.nextLine();
+            String s3 = sc.nextLine();
+            
+            char[] S1 = s1.toCharArray();
+            char[] S2 = s2.toCharArray();
+            char[] S3 = s3.toCharArray();
 
+            for (char letter : S1) {
+                for(char letter2 : S2){
+                    if(Objects.equals(letter, letter2)){
+                        for(char letter3 : S3){
+                            if(Objects.equals(letter, letter3)){
+                                result += priorities.get(letter);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         System.out.println(result);
